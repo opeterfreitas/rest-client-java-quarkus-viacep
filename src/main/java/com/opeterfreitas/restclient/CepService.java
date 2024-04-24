@@ -1,14 +1,17 @@
 package com.opeterfreitas.restclient;
 
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-@RegisterRestClient // Registra a interface como um cliente REST
+@RegisterRestClient
 public interface CepService {
 
-    @GET // Define que o método deve fazer uma requisição GET para o caminho "ws/{cep}/json/"
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("ws/{cep}/json/")
-    Cep findByCep(@PathParam("cep") String cep); // Método para buscar um endereço. Recebe o CEP como parâmetro e retorna um objeto Cep
+    Cep findByCep(@PathParam("cep") String cep);
 }

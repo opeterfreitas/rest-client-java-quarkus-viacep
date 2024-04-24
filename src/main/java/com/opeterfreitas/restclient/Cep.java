@@ -1,9 +1,17 @@
 package com.opeterfreitas.restclient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
-@JsonIgnoreProperties(ignoreUnknown = true) // Indica ao Jackson para ignorar propriedades desconhecidas ao desserializar o JSON
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class Cep {
+
+    @Id
+    @GeneratedValue
+    private long id;
     private String cep;
     private String logradouro;
     private String complemento;
@@ -18,7 +26,8 @@ public class Cep {
     public Cep() {
     }
 
-    public Cep(String cep, String logradouro, String complemento, String bairro, String localidade, String uf, String ibge, String gia, String ddd, String siafi) {
+    public Cep(long id, String cep, String logradouro, String complemento, String bairro, String localidade, String uf, String ibge, String gia, String ddd, String siafi) {
+        this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
         this.complemento = complemento;
@@ -29,6 +38,14 @@ public class Cep {
         this.gia = gia;
         this.ddd = ddd;
         this.siafi = siafi;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getCep() {
